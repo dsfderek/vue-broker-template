@@ -1,0 +1,58 @@
+// el message start
+.el-message {
+  .el-message__icon {
+    font-family: "iconfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  &.el-message--info {
+    .el-message__icon:before {
+      color: #3369FF;
+      content: "\e63d";
+    }
+  }
+  &.el-message--success {
+    .el-message__icon:before {
+      color: #09D8CE;
+      content: "\e63c";
+    }
+  }
+  &.el-message--warning {
+    .el-message__icon:before {
+      color: #FFC53D;
+      content: "\e63e";
+    }
+  }
+  &.el-message--error {
+    .el-message__icon:before {
+      color: #FD6845;
+      content: "\e63b";
+    }
+  }
+}
+
+// el message end
+
+// el 箭头 start
+.el-icon-arrow-up,
+.el-icon-arrow-down {
+  font-family: "iconfont" !important;
+  font-size: 12px !important;
+  color: #6D7383 !important;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.el-icon-arrow-up:before {
+  content: "\e640";
+}
+
+.el-icon-arrow-down:before,
+.el-submenu__icon-arrow.el-icon-arrow-down:before {
+  content: "\e63f";
+}
+
+// el 箭头 end

@@ -1,0 +1,103 @@
+pipeline {
+    agent any
+    parameters {
+	    string(name: "branch", defaultValue: "dev", description: "code branch")
+        choice(name: 'module',choices: ['clientui'], description: 'module_name')
+    }
+    stages{
+		stage('setting env') {
+		  agent any
+		  options {
+			skipDefaultCheckout(true)
+		  }
+		  steps {
+			script {
+			  env.NAMESPACE = "dev-broker"
+			  env.PROJECT = "broker"
+			  env.IMAGE_NAME = "192.168.5.25:31000/$PROJECT/$module:build-$BUILD_NUMBER"
+			}
+		  }
+		}	
+        stage('get code'){
+            steps{
+			          git branch: '${branch}', credentialsId: '4278fdd2-1f02-4310-8405-16b5860bde8d', url: 'https://codehub.devcloud.cn-north-4.huaweicloud.com/broker_gaoyang00001/broker-client-ui.git'
+            }
+        }
+        stage('clientui npm build'){
+             when {
+                environment name: 'module', value: 'clientui'            
+            }
+            steps {                
+                sh "sh build.sh"  
+                sh "/usr/local/sonar-scanner/bin/sonar-scanner"       	
+              }
+          }                     
+                        
+        stage('clientui image build'){
+            when {
+                environment name: 'module', value: 'clientui' 
+            }
+           steps{              
+                  script {		
+						        def imageName = docker.build("$IMAGE_NAME")
+						        docker.withRegistry('http://192.168.5.25:31000/','3e2d7537-ec59-4dae-b80c-a2e010021020'){
+						          	imageName.push()
+						        }
+						          sh "/usr/bin/docker rmi ${IMAGE_NAME}"                      
+				    }               
+		    }
+        }
+
+        stage('clientui deploy k8s'){
+           when {
+               environment name: 'module', value: 'clientui'
+           }
+           steps{
+             
+                    script {
+                    sh "sed -i 's/<BUILD_TAG>/${BUILD_NUMBER}/g' dev-k8s/k8s.yaml"
+                    sh "kubectl apply -f dev-k8s/k8s.yaml --record"
+                  }
+                   
+            }
+        }     	            	  		   
+
+    }       
+    post {
+        success {
+            emailext (
+                subject: "'${env.clientui_NAME} [${env.BUILD_NUMBER}]' 更新正常",
+                body: """
+                详情：
+                SUCCESSFUL: clientui '${env.clientui_NAME} [${env.BUILD_NUMBER}]'
+                状态：${env.clientui_NAME} jenkins 更新运行正常 
+                URL ：${env.BUILD_URL}
+                项目名称 ：${env.clientui_NAME} 
+                项目更新进度：${env.BUILD_NUMBER}
+                代码分支：${env.brach}
+                业务服务器IP: ${env.ip}
+                发布模块: ${env.module}
+                """,                
+                recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']]
+                )
+                }   
+        failure {
+            emailext (
+                subject: "'${env.clientui_NAME} [${env.BUILD_NUMBER}]' 更新失败",
+                body: """
+                详情：
+                FAILED: clientui '${env.clientui_NAME} [${env.BUILD_NUMBER}]'             
+                状态：${env.clientui_NAME} jenkins 运行失败 
+                URL ：${env.BUILD_URL}
+                项目名称 ：${env.clientui_NAME} 
+                项目更新进度：${env.BUILD_NUMBER}
+                代码分支：${env.brach}
+                业务服务器IP: ${env.ip}
+                发布模块: ${env.module}
+                """,                
+                recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']]
+                )
+                }
+    
+    }
+}

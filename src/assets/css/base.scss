@@ -1,0 +1,321 @@
+html,body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,dl,dt,dd,form,fieldset,table,td,img,div,nav,header,footer,aside,article,section{margin:0;padding:0;border:0;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;-webkit-overflow-scrolling: touch;}
+body{color:#212A40;font-size: 0.28rem;font-family: -apple-system, "Helvetica Neue", "Helvetica", "Arial", "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "Microsoft JhengHei", SimSun, sans-serif;}
+/* body{color:#333;font-size: 0.28rem;font-family: Lato,HelveticaNeue-Light,Helvetica Neue Light,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;} */
+
+html,body{width: 100%;height: 100%;position: relative;-moz-osx-font-smoothing: grayscale;-webkit-font-smoothing: antialiased;text-rendering: optimizeLegibility; -ms-overflow-style: scrollbar;}
+
+html {
+  font-size: 50px;
+  line-height: 1.15; /* 1 */
+  -ms-text-size-adjust: 100%; /* 2 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+  overflow-y: hidden;
+}
+
+ul,ol{list-style-type:none;}
+li {list-style: none;}
+
+input[type="text"] {
+    border-radius: 0;
+}
+
+select,input,img,select{vertical-align:middle;}
+/* select默认样式 */
+select {
+    outline: none;
+    padding-left: 12px;
+}
+
+a{color: #1E2B4D;text-decoration:none;}
+a:hover,a:active,a:focus{color: #1E2B4D;text-decoration:none;}
+
+table{border-collapse:collapse;border-spacing:0}
+p{word-wrap:break-word}
+
+
+article,
+aside,
+footer,
+header,
+nav,
+section {
+  display: block;
+}
+
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+
+figure {
+  margin: 1em 40px;
+}
+
+hr {
+  -webkit-box-sizing: content-box;
+     -moz-box-sizing: content-box;
+          box-sizing: content-box; /* 1 */
+  height: 0; /* 1 */
+  overflow: visible; /* 2 */
+}
+
+pre {
+  font-family: monospace, monospace; /* 1 */
+  font-size: 1em; /* 2 */
+}
+
+/* a {
+  background-color: transparent; 
+  -webkit-text-decoration-skip: objects; 
+} */
+
+abbr[title] {
+  border-bottom: none; /* 1 */
+  text-decoration: underline; /* 2 */
+  -webkit-text-decoration: underline dotted;
+     -moz-text-decoration: underline dotted;
+          text-decoration: underline dotted; /* 2 */
+}
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+code,
+kbd,
+samp {
+  font-family: monospace, monospace; /* 1 */
+  font-size: 1em; /* 2 */
+}
+
+dfn {
+  font-style: italic;
+}
+
+mark {
+  background-color: #ff0;
+  color: #000;
+}
+
+small {
+  font-size: 80%;
+}
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+audio,
+video {
+  display: inline-block;
+}
+
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+
+img {
+  border-style: none;
+}
+
+svg:not(:root) {
+  overflow: hidden;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: sans-serif; /* 1 */
+  font-size: 100%; /* 1 */
+  line-height: 1.15; /* 1 */
+  margin: 0; /* 2 */
+  padding: 0;
+  box-sizing: border-box;
+}
+
+button,
+input { /* 1 */
+  overflow: visible;
+  border: 0;
+  outline: none;
+}
+
+button,
+select { /* 1 */
+  text-transform: none;
+}
+
+button,
+html [type="button"], /* 1 */
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button; /* 2 */
+}
+
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+button[disabled], html input[disabled] {
+  cursor: not-allowed;
+}
+
+fieldset {
+  padding: 0.35em 0.75em 0.625em;
+}
+
+legend {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box; /* 1 */
+  color: inherit; /* 2 */
+  display: table; /* 1 */
+  max-width: 100%; /* 1 */
+  padding: 0; /* 3 */
+  white-space: normal; /* 1 */
+}
+
+progress {
+  display: inline-block; /* 1 */
+  vertical-align: baseline; /* 2 */
+}
+
+textarea {
+  overflow: auto;
+}
+
+[type="checkbox"],
+[type="radio"] {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box; /* 1 */
+  padding: 0; /* 2 */
+}
+
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+[type="search"] {
+  -webkit-appearance: textfield; /* 1 */
+  outline-offset: -2px; /* 2 */
+}
+
+[type="search"]::-webkit-search-cancel-button,
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button; /* 1 */
+  font: inherit; /* 2 */
+}
+
+details, /* 1 */
+menu {
+  display: block;
+}
+
+summary {
+  display: list-item;
+}
+
+canvas {
+  display: inline-block;
+}
+
+template {
+  display: none;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+label {
+  font-weight: normal;
+}
+.clearFix {
+ zoom: 1;
+}
+
+.clearFix:after {
+ clear: both;
+ height: 0;
+ width: 100%;
+ overflow: hidden;
+ visibility: hidden;
+ display: block;
+ content: '.';
+}
+/*webkit滚动条样式*/
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+/* 滚动槽 */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+/* 滚动条滑块 */
+::-webkit-scrollbar-thumb {
+  background: #A3A9B7;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:window-inactive {
+  background: #A3A9B7;
+}
+
+/* placeholder */
+.el-input__inner::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+  color:    #A3A9B7;
+}
+.el-input__inner::-moz-placeholder { /* Mozilla Firefox 4 ~ 18 */
+  color:    #A3A9B7;
+  opacity:  1;
+}
+.el-input__inner::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color:    #A3A9B7;
+  opacity:  1;
+}
+.el-input__inner::-ms-input-placeholder { /* Internet Explorer 10 ~ 11 */
+  color:    #A3A9B7;
+}
+.el-input__inner::-ms-input-placeholder { /* Microsoft Edge */
+  color:    #A3A9B7;
+}
+.el-input__inner::placeholder { /* 大部分现代浏览器 */
+  color:    #A3A9B7;
+}
+
+/*隐藏ie 下 password 默认眼睛*/
+::-ms-clear,::-ms-reveal{display:none;}

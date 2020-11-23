@@ -1,0 +1,47 @@
+.site-nav {
+  height: 50px;
+  background: #20243d;
+  .nav-bd-l {
+    float: left;
+  }
+  .nav-bd-r {
+    float: right;
+    margin: 0 10px;
+    height: 50px;
+    line-height: 50px;
+    .site-nav-username {
+      color: #fff;
+      margin: 20px 0;
+      line-height: 24px;
+    }
+  }
+  .site-nav-menu {
+    float: left;
+    .site-nav-link {
+      cursor: pointer;
+      position: relative;
+      padding: 0 20px;
+      height: 50px;
+      line-height: 50px;
+      .site-nav-logo {
+        height: 26px;
+      }
+    }
+    .site-nav-tab {
+      color:#D6D8DF;
+      line-height: 50px;
+      padding: 0 10px;
+      cursor: pointer;
+      &:hover,&:active {
+        color:#FFF;
+      };
+    }   
+    .site-nav-split {
+      width: 1px;
+      height: 16px;
+      opacity: 0.26;
+      border-right: solid 1px #FFF;
+      margin: 17px 5px;
+    }
+  }
+}

@@ -1,0 +1,99 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clientui
+  namespace: dev-broker
+  labels:
+    k8s-app: clientui
+
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  #滚动升级时70s后认为该pod就绪
+  minReadySeconds: 70
+  strategy:
+    ##由于repliclientui为3,则整个升级,pod个数在2-4个之间
+    rollingUpdate:
+      #滚动升级时会先启动1个pod    
+      maxSurge: 1 
+      #滚动升级时允许的最大Unavailable的pod个数      
+      maxUnavailable: 1   
+  selector:
+    matchLabels:
+      k8s-app: clientui
+  template:
+    metadata:
+      labels:
+        k8s-app: clientui
+    spec:
+      containers:
+      - name: clientui
+        image: 192.168.5.25:31000/broker/clientui:build-<BUILD_TAG>
+        #env:
+        #- name: clientui_PROFILES_ACTIVE
+        #  value: "dev"  
+        resources:
+          # need more cpu upon initialization, therefore burstable class
+          limits:
+            memory: 2048Mi
+            cpu:  1000m
+          requests:
+            cpu: 500m
+            memory:  1024Mi
+        ports:
+        #容器的端口
+        - containerPort: 80
+          name: clientui
+          protocol: TCP        
+        readinessProbe:
+          tcpSocket:
+            port: 80
+          initialDelaySeconds: 60
+          periodSeconds: 10
+        livenessProbe:
+          tcpSocket:
+            port: 80
+          initialDelaySeconds: 120
+          periodSeconds: 20   
+        #volumeMounts:
+        #- mountPath: "/download"
+        #  name: data
+      imagePullSecrets:
+      - name: myregistrykey    
+      #volumes:
+      #- name: data
+      #  persistentVolumeClaim:
+      #    claimName: download-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: clientui
+  namespace: dev-broker
+  labels:
+    k8s-app: clientui
+spec:
+  ports:
+  #集群IP的端口
+  - port: 80
+    name: clientui
+    protocol: TCP
+    #容器的端口
+    targetPort: 80
+  selector:
+    k8s-app: clientui
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: clientui
+  namespace: dev-broker
+spec:
+  entryPoints:
+    - web
+  routes:
+  - match: Host(`clientui-dev.newtest.huaxiacloud.com`) && PathPrefix(`/`)
+    kind: Rule
+    services:
+    - name: clientui
+      port: 80

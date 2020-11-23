@@ -1,0 +1,100 @@
+/*iconfont的table按钮鼠标效果--start*/
+.icon-table-edit,
+.icon-table-review,
+.icon-table-commit,
+.icon-table-del,
+.icon-table-on,
+.icon-table-off,
+.icon-table-userlist,
+.icon-set-permissions,
+.icon-table-allocate-personnel,
+.icon-table-download,
+.icon-table-adjustment,
+.icon-table-ust,
+.icon-table-mug,
+.icon-help,
+.icon-table-up-shelves,
+.icon-table-off-shelves,
+.icon-table-regionalsettings,
+.icon-wuliu,
+.icon-qianshou,
+.icon-undo,
+.icon-refund,
+.icon-table-view ,
+.icon-reauth,
+.icon-conauth,
+.icon-table-sign,
+.icon-table-xuyuexieyi{
+  color: #6D7383;
+  &:hover {
+    color: #3767FF;
+  }
+}
+
+.icon-table-review0 {
+  color: #FD6845;
+}
+
+.icon-table-review1 {
+  color: #2CDDD5;
+}
+
+/*iconfont的table按钮鼠标效果--end*/
+.iconfont.icon-dangao {
+  color: red;
+  cursor: pointer;
+  &:hover {
+    color: blue;
+  }
+}
+
+/*提示类的颜色 -start */
+.icon-tip-info {
+  color: #3369FF
+}
+
+.icon-tip-success {
+  color: #09D8CE
+}
+
+.icon-tip-warning {
+  color: #FFC53D
+}
+
+.icon-tip-error {
+  color: #FD6845
+}
+
+/*提示类的颜色 -end */
+
+/* 带圆边框的按钮 -start */
+.circle-btn {
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  border: 1px solid #E2E1E4 !important;
+  .iconfont {
+    font-size: 16px;
+    color: #74737A;
+  }
+  &.is-disabled{
+    .iconfont{
+      opacity: 0.6;
+    }
+    &:hover{
+      border: 1px solid #E2E1E4 !important;
+      .iconfont {
+        color: #74737A;
+      }
+    }
+  }
+  &:hover {
+    border: 1px solid #3767FF !important;
+    .iconfont {
+      color: #3767FF;
+    }
+  }
+}
+
+/* 带圆边框的按钮 -end */
+
